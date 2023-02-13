@@ -1,15 +1,13 @@
-package com.team9.had.service.impl;
+package com.team9.had.service.blackbox.addDoctor;
 
 import com.team9.had.entity.Citizen;
 import com.team9.had.entity.Doctor;
 import com.team9.had.repository.CitizenRepository;
 import com.team9.had.repository.DoctorRepository;
-import com.team9.had.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -40,15 +38,18 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
-//    @Override
-//    public boolean addDoctors(List<Doctor> doctors) {
-//        try{
-//            doctorRepository.saveAll(doctors);
-//            return true;
-//        }
-//        catch(Exception e){
-//            System.out.println("exception = " + e);
-//            return false;
-//        }
-//    }
+    @Override
+    public boolean addDoctors(List<Doctor> doctors) {
+        try{
+            for(Doctor doctor : doctors){
+                if(!addDoctor(doctor)) return false;
+            }
+            return true;
+        }
+        catch(Exception e){
+            System.out.println("exception = " + e);
+            return false;
+        }
+    }
+
 }

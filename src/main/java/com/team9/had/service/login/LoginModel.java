@@ -1,4 +1,4 @@
-package com.team9.had.login;
+package com.team9.had.service.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

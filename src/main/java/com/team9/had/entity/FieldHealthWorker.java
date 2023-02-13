@@ -1,12 +1,13 @@
 package com.team9.had.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class FieldHealthWorker{
@@ -16,13 +17,15 @@ public class FieldHealthWorker{
     private String loginId;
 
     @OneToOne
-    @JoinColumn(name = "cid", referencedColumnName = "id", unique = true)
+    @JoinColumn(name = "citizen_id", unique = true, nullable = false)
     private Citizen citizen;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "assignedPincode")
+    @Column(name = "assignedPincode", nullable = false)
     private String assignedPincode;
 
+    @OneToMany(mappedBy = "fieldHealthWorker")
+    private List<FollowUp> followUpList;
 }

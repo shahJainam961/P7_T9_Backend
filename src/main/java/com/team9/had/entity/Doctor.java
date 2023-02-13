@@ -1,12 +1,13 @@
 package com.team9.had.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Doctor{
@@ -15,11 +16,22 @@ public class Doctor{
     @Id
     @Column(name = "loginId", unique = true)
     private String loginId;
+
     @OneToOne
-    @JoinColumn(name = "cid", referencedColumnName = "id", unique = true)
+    @JoinColumn(name = "citizen_id", unique = true, nullable = false)
     private Citizen citizen;
-    @Column(name = "licenseId", unique = true)
+
+    @Column(name = "licenseId", unique = true, nullable = false)
     private String licenseId;
-    @Column(name = "password")
+
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "hospital_id", nullable = false)
+    private Hospital hospital;
+
+    @OneToMany(mappedBy = "doctor")
+    private List<HealthRecord> healthRecordList;
+
 }

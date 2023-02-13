@@ -1,4 +1,4 @@
-package com.team9.had.login;
+package com.team9.had.service.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
