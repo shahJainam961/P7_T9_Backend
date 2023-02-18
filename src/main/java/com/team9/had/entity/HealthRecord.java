@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -15,6 +14,7 @@ import java.util.List;
 public class HealthRecord {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(nullable = false)
@@ -57,8 +57,5 @@ public class HealthRecord {
     @ManyToOne
     @JoinColumn(name = "citizen_id", nullable = false)
     private Citizen citizen;
-
-    @OneToMany(mappedBy = "healthRecord")
-    private List<FollowUp> followUpList;
 
 }

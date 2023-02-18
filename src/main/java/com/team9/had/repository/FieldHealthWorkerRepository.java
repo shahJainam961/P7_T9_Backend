@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FieldHealthWorkerRepository extends JpaRepository<FieldHealthWorker, String> {
-    public FieldHealthWorker findByCitizen_Id(Integer id);
+    FieldHealthWorker findByCitizen_Id(Integer id);
 }

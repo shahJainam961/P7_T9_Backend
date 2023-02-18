@@ -3,7 +3,6 @@ package com.team9.had.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Entity
 @Getter
@@ -26,6 +25,4 @@ public class Supervisor{
     @Column(name = "assignedPincode", nullable = false)
     private String assignedPincode;
 
-    @OneToMany(mappedBy = "supervisor")
-    private  List<FollowUp> followUpList;
 }

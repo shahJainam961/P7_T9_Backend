@@ -11,6 +11,8 @@ import com.team9.had.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,51 +28,48 @@ public class LoginServiceImpl implements LoginService{
     private DoctorRepository doctorRepository;
 
     @Override
-    public boolean loggingIn(LoginModel loginModel) {
-        String loginId = loginModel.getLoginId();
+    public Serializable loggingIn(LoginModel loginModel) {
+        String loginId = loginModel.getLoginId().trim();
         String password = loginModel.getPassword();
-        if(validLoginId(loginId)){
-            if(loginId.startsWith("DOC")){
-               List<Doctor> doctors = doctorRepository.findById(loginId).stream().toList();
-               if(doctors.size()==0) return false;
-               else{
-                   if(doctors.get(0).getPassword().equals(password)) return true;
-                   else return false;
-               }
-            }
-            else if(loginId.startsWith("REC")){
-                List<Receptionist> receptionists = receptionistRepository.findById(loginId).stream().toList();
-                if(receptionists.size()==0) return false;
-                else{
-                    if(receptionists.get(0).getPassword().equals(password)) return true;
-                    else return false;
-                }
-            }
-            else if(loginId.startsWith("SUP")){
-                List<Supervisor> supervisors = supervisorRepository.findById(loginId).stream().toList();
-                if(supervisors.size()==0) return false;
-                else{
-                    if(supervisors.get(0).getPassword().equals(password)) return true;
-                    else return false;
-                }
-            }
-            else if(loginId.startsWith("FHW")){
-                List<FieldHealthWorker> fieldHealthWorkers = fieldHealthWorkerRepository.findById(loginId).stream().toList();
-                if(fieldHealthWorkers.size()==0) return false;
-                else{
-                    if(fieldHealthWorkers.get(0).getPassword().equals(password)) return true;
-                    else return false;
-                }
-            }
-            else return false;
+        if(loginId.startsWith("DOC")){
+           List<Doctor> doctors = doctorRepository.findById(loginId).stream().toList();
+           if(doctors.size()==0) return null;
+           else{
+               if(doctors.get(0).getPassword().equals(password)) return true;
+               else return null;
+           }
         }
-        else return false;
-    }
-
-    private boolean validLoginId(String loginId) {
-        if(loginId.length()<=3) return false;
-        if(!loginId.startsWith("DOC") && !loginId.startsWith("REC")
-                && !loginId.startsWith("SUP") && !loginId.startsWith("FHW")) return false;
-        return true;
+        else if(loginId.startsWith("REC")){
+            Receptionist receptionist = receptionistRepository.findByLoginId(loginId);
+            if(receptionist==null) return null;
+            else{
+                if(receptionist.getPassword().equals(password)){
+                    Integer hospitalId = receptionist.getHospital().getId();
+                    ArrayList<Doctor> doctorList = doctorRepository.findAllByHospital_Id(hospitalId);
+                    ArrayList<Object> obj = new ArrayList<>();
+                    obj.add(receptionist);
+                    obj.add(doctorList);
+                    return obj;
+                }
+                else return null;
+            }
+        }
+//        else if(loginId.startsWith("SUP")){
+//            List<Supervisor> supervisors = supervisorRepository.findById(loginId).stream().toList();
+//            if(supervisors.size()==0) return null;
+//            else{
+//                if(supervisors.get(0).getPassword().equals(password)) return true;
+//                else return null;
+//            }
+//        }
+//        else if(loginId.startsWith("FHW")){
+//            List<FieldHealthWorker> fieldHealthWorkers = fieldHealthWorkerRepository.findById(loginId).stream().toList();
+//            if(fieldHealthWorkers.size()==0) return null;
+//            else{
+//                if(fieldHealthWorkers.get(0).getPassword().equals(password)) return true;
+//                else return null;
+//            }
+//        }
+        else return null;
     }
 }

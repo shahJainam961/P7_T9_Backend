@@ -1,5 +1,7 @@
 package com.team9.had.service.login;
 
+import java.io.Serializable;
+
 public interface LoginService {
-    boolean loggingIn(LoginModel loginModel);
+    Serializable loggingIn(LoginModel loginModel);
 }

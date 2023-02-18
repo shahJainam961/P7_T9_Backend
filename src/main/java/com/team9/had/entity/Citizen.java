@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -50,8 +49,4 @@ public class Citizen {
 
     @Column(name = "govId", unique = true, nullable = false)
     private String govId;
-
-    @OneToMany(mappedBy = "citizen")
-    private List<HealthRecord> healthRecordList;
-
 }

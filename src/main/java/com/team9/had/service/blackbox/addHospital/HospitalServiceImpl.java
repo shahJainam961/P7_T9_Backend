@@ -1,6 +1,5 @@
 package com.team9.had.service.blackbox.addHospital;
 
-import com.team9.had.entity.Doctor;
 import com.team9.had.entity.Hospital;
 import com.team9.had.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ public class HospitalServiceImpl implements HospitalService{
     private HospitalRepository hospitalRepository;
     @Override
     public boolean addHospital(Hospital hospital) {
-        List<Doctor> doctorList= hospitalRepository.findById(2).get().getDoctorList();
-        System.out.println("doctorList = " + doctorList);
         try {
             hospitalRepository.save(hospital);
         }

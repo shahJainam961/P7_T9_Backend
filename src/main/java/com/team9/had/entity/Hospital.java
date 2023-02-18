@@ -3,10 +3,6 @@ package com.team9.had.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.print.Doc;
-import java.sql.Date;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -40,10 +36,5 @@ public class Hospital {
     @Column(name = "contactNo", nullable = false, unique = true)
     private String contactNo;
 
-    @OneToMany(mappedBy = "hospital")
-    private List<Receptionist> receptionistList;
-
-    @OneToMany(mappedBy = "hospital")
-    private List<Doctor> doctorList;
 
 }

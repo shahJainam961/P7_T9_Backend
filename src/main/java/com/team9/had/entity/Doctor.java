@@ -3,7 +3,6 @@ package com.team9.had.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Entity
 @Getter
@@ -31,7 +30,5 @@ public class Doctor{
     @JoinColumn(name = "hospital_id", nullable = false)
     private Hospital hospital;
 
-    @OneToMany(mappedBy = "doctor")
-    private List<HealthRecord> healthRecordList;
 
 }
