@@ -7,6 +7,8 @@ import com.team9.had.repository.FieldHealthWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FieldHealthWorkerServiceImpl implements FieldHealthWorkerService {
 
@@ -29,6 +31,20 @@ public class FieldHealthWorkerServiceImpl implements FieldHealthWorkerService {
             else return false;
         }
         catch(Exception e) {
+            System.out.println("exception = " + e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addFhws(List<FieldHealthWorker> fieldHealthWorkers) {
+        try{
+            for(FieldHealthWorker fieldHealthWorker : fieldHealthWorkers){
+                if(!addFhw(fieldHealthWorker)) return false;
+            }
+            return true;
+        }
+        catch(Exception e){
             System.out.println("exception = " + e);
             return false;
         }

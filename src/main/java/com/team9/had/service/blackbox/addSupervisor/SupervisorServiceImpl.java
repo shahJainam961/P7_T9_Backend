@@ -7,6 +7,8 @@ import com.team9.had.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupervisorServiceImpl implements SupervisorService {
 
@@ -29,6 +31,20 @@ public class SupervisorServiceImpl implements SupervisorService {
             else return false;
         }
         catch(Exception e) {
+            System.out.println("exception = " + e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addSupervisors(List<Supervisor> supervisors) {
+        try{
+            for(Supervisor supervisor : supervisors){
+                if(!addSupervisor(supervisor)) return false;
+            }
+            return true;
+        }
+        catch(Exception e){
             System.out.println("exception = " + e);
             return false;
         }

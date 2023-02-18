@@ -1,7 +1,6 @@
 package com.team9.had.service.blackbox;
 
 import com.team9.had.entity.*;
-import com.team9.had.repository.HospitalRepository;
 import com.team9.had.service.blackbox.addCitizen.CitizenService;
 import com.team9.had.service.blackbox.addDoctor.DoctorService;
 import com.team9.had.service.blackbox.addFieldHealthWorker.FieldHealthWorkerService;
@@ -111,10 +110,26 @@ public class BlackboxController {
         return  new ResponseEntity<>("Something went wrong!!", HttpStatusCode.valueOf(412));
     }
 
+    @PostMapping("/addFhws")
+    public ResponseEntity<String> addFhws(@RequestBody List<FieldHealthWorker> fieldHealthWorkers){
+        if(fieldHealthWorkerService.addFhws(fieldHealthWorkers)){
+            return new ResponseEntity<>("FHWs added Successfully!!", HttpStatus.OK);
+        }
+        return  new ResponseEntity<>("Something went wrong!!", HttpStatusCode.valueOf(412));
+    }
+
     @PostMapping("/addSupervisor")
     public ResponseEntity<String> addSupervisor(@RequestBody Supervisor supervisor){
         if(supervisorService.addSupervisor(supervisor)){
             return new ResponseEntity<>("Supervisor added Successfully!!", HttpStatus.OK);
+        }
+        return  new ResponseEntity<>("Something went wrong!!", HttpStatusCode.valueOf(412));
+    }
+
+    @PostMapping("/addSupervisors")
+    public ResponseEntity<String> addSupervisors(@RequestBody List<Supervisor> supervisors){
+        if(supervisorService.addSupervisors(supervisors)){
+            return new ResponseEntity<>("Supervisors added Successfully!!", HttpStatus.OK);
         }
         return  new ResponseEntity<>("Something went wrong!!", HttpStatusCode.valueOf(412));
     }
