@@ -31,4 +31,5 @@ public class ServiceForDoctorImpl implements ServiceForDoctor{
         obj.add(healthRecordList);
         return obj;
     }
+
 }

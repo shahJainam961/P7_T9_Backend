@@ -2,7 +2,9 @@ package com.team9.had.service.login;
 
 import com.team9.had.Constant;
 import com.team9.had.entity.Doctor;
+import com.team9.had.entity.FieldHealthWorker;
 import com.team9.had.entity.Receptionist;
+import com.team9.had.entity.Supervisor;
 import com.team9.had.repository.DoctorRepository;
 import com.team9.had.repository.FieldHealthWorkerRepository;
 import com.team9.had.repository.ReceptionistRepository;
@@ -53,22 +55,22 @@ public class LoginServiceImpl implements LoginService{
                 else return null;
             }
         }
-//        else if(loginId.startsWith(Constant.SUPERVISOR)){
-//            List<Supervisor> supervisors = supervisorRepository.findById(loginId).stream().toList();
-//            if(supervisors.size()==0) return null;
-//            else{
-//                if(supervisors.get(0).getPassword().equals(password)) return true;
-//                else return null;
-//            }
-//        }
-//        else if(loginId.startsWith(Constant.FIELD_HEALTH_WORKER)){
-//            List<FieldHealthWorker> fieldHealthWorkers = fieldHealthWorkerRepository.findById(loginId).stream().toList();
-//            if(fieldHealthWorkers.size()==0) return null;
-//            else{
-//                if(fieldHealthWorkers.get(0).getPassword().equals(password)) return true;
-//                else return null;
-//            }
-//        }
+        else if(loginId.startsWith(Constant.SUPERVISOR)){
+            List<Supervisor> supervisors = supervisorRepository.findById(loginId).stream().toList();
+            if(supervisors.size()==0) return null;
+            else{
+                if(supervisors.get(0).getPassword().equals(password)) return true;
+                else return null;
+            }
+        }
+        else if(loginId.startsWith(Constant.FIELD_HEALTH_WORKER)){
+            List<FieldHealthWorker> fieldHealthWorkers = fieldHealthWorkerRepository.findById(loginId).stream().toList();
+            if(fieldHealthWorkers.size()==0) return null;
+            else{
+                if(fieldHealthWorkers.get(0).getPassword().equals(password)) return true;
+                else return null;
+            }
+        }
         else return null;
     }
 }

@@ -1,26 +1,32 @@
 package com.team9.had.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class FollowUp {
 
     @Id
     private Integer id;
 
     @Column(nullable = false)
-    private Date date;
+    private Date dateOfFollowUp;
+
+    private Date actualDateOfFollowUp;
+    private Time actualTimeOfFollowUp;
 
     @Column(nullable = false)
-    private String status;
+    private Integer status;
 
     @Column(nullable = false)
     private String instruction;
@@ -44,5 +50,8 @@ public class FollowUp {
     @ManyToOne
     @JoinColumn(name = "field_health_worker_login_id")
     private FieldHealthWorker fieldHealthWorker;
+
+    @Column(nullable = false)
+    private String secretKey;
 
 }

@@ -1,4 +1,4 @@
-package com.team9.had.service.blackbox;
+package com.team9.had.controller;
 
 import com.team9.had.entity.*;
 import com.team9.had.service.blackbox.addCitizen.CitizenService;

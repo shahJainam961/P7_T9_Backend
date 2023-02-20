@@ -1,7 +1,10 @@
 package com.team9.had.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -11,7 +14,6 @@ import java.sql.Time;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class HealthRecord {
 
     @Id

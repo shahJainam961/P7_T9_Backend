@@ -1,5 +1,7 @@
-package com.team9.had.service.login;
+package com.team9.had.controller;
 
+import com.team9.had.service.login.LoginModel;
+import com.team9.had.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;

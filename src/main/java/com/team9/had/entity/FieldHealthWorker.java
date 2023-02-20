@@ -1,7 +1,11 @@
 package com.team9.had.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
@@ -12,17 +16,23 @@ import lombok.*;
 public class FieldHealthWorker{
 
     @Id
-    @Column(name = "loginId", unique = true)
     private String loginId;
 
     @OneToOne
     @JoinColumn(name = "citizen_id", unique = true, nullable = false)
     private Citizen citizen;
 
-    @Column(name = "password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "assignedPincode", nullable = false)
+    @Column(nullable = false)
     private String assignedPincode;
+
+    private String pin;
+
+//    private Integer numberOfTaskCurrentlyAssigned;
+//    private Integer numberOfTaskAssigned;
+//    private Integer numberOfTaskCompleted;
+//    private Integer numberOfTaskBacklogged;
 
 }
