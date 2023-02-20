@@ -1,9 +1,8 @@
 package com.team9.had.service.login;
 
+import com.team9.had.Constant;
 import com.team9.had.entity.Doctor;
-import com.team9.had.entity.FieldHealthWorker;
 import com.team9.had.entity.Receptionist;
-import com.team9.had.entity.Supervisor;
 import com.team9.had.repository.DoctorRepository;
 import com.team9.had.repository.FieldHealthWorkerRepository;
 import com.team9.had.repository.ReceptionistRepository;
@@ -31,7 +30,7 @@ public class LoginServiceImpl implements LoginService{
     public Serializable loggingIn(LoginModel loginModel) {
         String loginId = loginModel.getLoginId().trim();
         String password = loginModel.getPassword();
-        if(loginId.startsWith("DOC")){
+        if(loginId.startsWith(Constant.DOCTOR)){
            List<Doctor> doctors = doctorRepository.findById(loginId).stream().toList();
            if(doctors.size()==0) return null;
            else{
@@ -39,7 +38,7 @@ public class LoginServiceImpl implements LoginService{
                else return null;
            }
         }
-        else if(loginId.startsWith("REC")){
+        else if(loginId.startsWith(Constant.RECEPTIONIST)){
             Receptionist receptionist = receptionistRepository.findByLoginId(loginId);
             if(receptionist==null) return null;
             else{
@@ -54,7 +53,7 @@ public class LoginServiceImpl implements LoginService{
                 else return null;
             }
         }
-//        else if(loginId.startsWith("SUP")){
+//        else if(loginId.startsWith(Constant.SUPERVISOR)){
 //            List<Supervisor> supervisors = supervisorRepository.findById(loginId).stream().toList();
 //            if(supervisors.size()==0) return null;
 //            else{
@@ -62,7 +61,7 @@ public class LoginServiceImpl implements LoginService{
 //                else return null;
 //            }
 //        }
-//        else if(loginId.startsWith("FHW")){
+//        else if(loginId.startsWith(Constant.FIELD_HEALTH_WORKER)){
 //            List<FieldHealthWorker> fieldHealthWorkers = fieldHealthWorkerRepository.findById(loginId).stream().toList();
 //            if(fieldHealthWorkers.size()==0) return null;
 //            else{

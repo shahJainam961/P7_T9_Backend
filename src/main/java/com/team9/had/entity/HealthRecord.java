@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Getter
@@ -19,6 +20,9 @@ public class HealthRecord {
 
     @Column(nullable = false)
     private Date creationDate;
+
+    @Column(nullable = false)
+    private Time creationTime;
 
     @Column(nullable = false)
     private String currentStreet1;
@@ -57,5 +61,8 @@ public class HealthRecord {
     @ManyToOne
     @JoinColumn(name = "citizen_id", nullable = false)
     private Citizen citizen;
+
+    @Column(nullable = false)
+    private Integer status;
 
 }

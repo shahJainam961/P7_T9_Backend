@@ -1,5 +1,6 @@
 package com.team9.had.service.receptionist;
 
+import com.team9.had.Constant;
 import com.team9.had.entity.HealthRecord;
 import com.team9.had.repository.CitizenRepository;
 import com.team9.had.repository.DoctorRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 @Service
@@ -24,11 +26,9 @@ public class ServiceForReceptionistImpl implements ServiceForReceptionist{
     @Override
     public Serializable createHealthRecord(HealthRecord healthRecord) {
         try{
-//            Doctor doctor = doctorRepository.findById(healthRecord.getDoctor().getLoginId()).get();
-//            healthRecord.setDoctor(doctor);
-//            Citizen citizen = citizenRepository.findById(healthRecord.getCitizen().getId()).get();
-//            healthRecord.setCitizen(citizen);
-            healthRecord.setCreationDate(Date.valueOf(LocalDateTime.now().toLocalDate()));
+            healthRecord.setCreationDate(new Date(System.currentTimeMillis()));
+            healthRecord.setCreationTime(new Time(System.currentTimeMillis()));
+            healthRecord.setStatus(Constant.HEALTH_RECORD_NOT_ASSESSED);
             healthRecordRepository.save(healthRecord);
             return true;
         }
